@@ -31,15 +31,37 @@
 
     <!--END-->
 
+<!-- Google Form Wrapped in a Div with Background Color -->
+<div class="flex justify-center items-center h-screen bg-gray-900"> <!-- Use the same background color class and flex utilities -->
+  <iframe id="googleForm" src="https://docs.google.com/forms/d/e/1FAIpQLSeOvAo1P48oETQkGbbqwjuAcD2s_rkADrsn6x2CVNsUJX6QIw/viewform?embedded=true" width="640" height="647" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+</div>
 
+<script>
+  // Function to disable right-click and inspection window
+  function disableRightClickAndInspect() {
+      // Disable right-click on the document
+      document.addEventListener('contextmenu', function(e) {
+          e.preventDefault();
+      });
 
+      // Disable inspection
+      document.getElementById('googleForm').contentWindow.document.addEventListener('keydown', function(e) {
+          // Disable F12 key
+          if (e.key === 'F12' || e.keyCode === 123) {
+              e.preventDefault();
+          }
+          // Disable Ctrl+Shift+I
+          if (e.ctrlKey && e.shiftKey && e.key === 'I') {
+              e.preventDefault();
+          }
+      });
+  }
 
-
-
-
-
-
-
+  // Call the function after the iframe content has loaded
+  document.getElementById('googleForm').onload = function() {
+      disableRightClickAndInspect();
+  };
+</script>
 
 
 
